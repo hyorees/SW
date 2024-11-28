@@ -1,0 +1,35 @@
+students = []
+
+def add_student(name, score):
+    students.append({"name": name, "score": score})
+
+def delete_student(name):
+    global students
+    students = [student for student in students if student["name"] != name]
+
+def search_student(name):
+    for student in students:
+        if student["name"] == name:
+            return student
+    return None
+
+def sort_students():
+    return sorted(students, key=lambda x: x["score"], reverse=True)
+
+while True:
+    print("\n1. Add Student\n2. Delete Student\n3. Search Student\n4. Sort Students\n5. Exit")
+    choice = int(input("Choose an option: "))
+    if choice == 1:
+        name = input("Enter student name: ")
+        score = int(input("Enter student score: "))
+        add_student(name, score)
+    elif choice == 2:
+        name = input("Enter student name to delete: ")
+        delete_student(name)
+    elif choice == 3:
+        name = input("Enter student name to search: ")
+        print(search_student(name) or "Student not found.")
+    elif choice == 4:
+        print(sort_students())
+    elif choice == 5:
+        break
